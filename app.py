@@ -26,32 +26,37 @@ def ai_response(prompt=None):
     Reads `HF_TOKEN` and optional `HF_MODEL` from environment. If no token
     is available, falls back to the local placeholder response.
     """
-    model = os.environ.get("HF_MODEL", "gpt2")
-
+    model = "MiniMaxAI/MiniMax-M2:novita"
     if not hf_token:
         # fallback when token not provided
         time.sleep(0.6)
-        return "Hi — placeholder (no HF token configured)."
+        return "Hi, sorry I can't find my API key"
 
     if not prompt:
         prompt = "Hello"
 
     try:
-        client = InferenceClient(token=hf_token)
+        client = InferenceClient(api_key=hf_token)
 
         # Use text_generation for models that support it. We request a short
         # response and return the generated text. Adjust parameters as needed.
-        output = client.text_generation(model=model, prompt=prompt, max_new_tokens=150)
-
+        output = client.chat.completions.create(
+            model=model,
+            messages=[{
+                "role":"user",
+                "content":prompt
+            }],max_tokens=256)
         # `output` may be a dict with 'generated_text' or a list; handle common shapes
-        if isinstance(output, dict):
-            text = output.get("generated_text") or output.get("text")
-        elif isinstance(output, list) and len(output) > 0:
-            first = output[0]
-            text = first.get("generated_text") if isinstance(first, dict) else str(first)
-        else:
-            text = str(output)
+        # if isinstance(output, dict):
+        #     text = output.get("generated_text") or output.get("text")
+        # elif isinstance(output, list) and len(output) > 0:
+        #     first = output[0]
+        #     text = first.get("generated_text") if isinstance(first, dict) else str(first)
+        # else:
+        #     text = str(output)
 
+        text = output.choices[0].message.content
+        print(text)
         # final fallback
         if not text:
             text = "Error: currently facing downtime - you've used me too much"
