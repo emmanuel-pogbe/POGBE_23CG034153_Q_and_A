@@ -1,0 +1,212 @@
+:root {
+    --bg: #0b0c0f;
+    --panel: #0f1114;
+    --muted: #95a1b3;
+    --accent: #10a37f;
+    --text: #e6eef3;
+    --side: #0b0c0f;
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+.app {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, var(--panel), #0c0d10);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.03)
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 20px
+}
+
+.btn {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer
+}
+
+.btn.small {
+    font-size: 13px;
+    padding: 6px
+}
+
+.btn.primary {
+    background: var(--accent);
+    border: none;
+    color: #fff
+}
+
+.conversations {
+    flex: 1;
+    overflow: auto;
+    margin-top: 6px
+}
+
+.footer {
+    font-size: 12px;
+    color: var(--muted);
+    padding-top: 8px
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column
+}
+
+.chat-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03)
+}
+
+.chat-header h1 {
+    margin: 0;
+    font-size: 18px
+}
+
+.subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px
+}
+
+.chat {
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.message {
+    max-width: 78%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    line-height: 1.4;
+    white-space: pre-wrap
+}
+
+.message.user {
+    align-self: flex-end;
+    background: linear-gradient(180deg, #042b21, #063a2b);
+    color: #dff9f0;
+    border-bottom-right-radius: 6px
+}
+
+.message.assistant {
+    align-self: flex-start;
+    background: linear-gradient(180deg, #111418, #0b0f13);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    border-bottom-left-radius: 6px
+}
+
+.message .meta {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px
+}
+
+.input-area {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    align-items: end
+}
+
+.input-area textarea {
+    flex: 1;
+    resize: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 100px
+}
+
+.loader {
+    width: 36px;
+    height: 10px;
+    display: inline-block
+}
+
+.dots span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 3px;
+    background: var(--muted);
+    border-radius: 50%;
+    opacity: 0;
+    animation: dots 1s infinite
+}
+
+.dots span:nth-child(1) {
+    animation-delay: 0s
+}
+
+.dots span:nth-child(2) {
+    animation-delay: .15s
+}
+
+.dots span:nth-child(3) {
+    animation-delay: .3s
+}
+
+@keyframes dots {
+    0% {
+        opacity: 0;
+        transform: translateY(0)
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-6px)
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(0)
+    }
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px
+}

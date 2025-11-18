@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Question and Answer</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="app">
+    <aside class="sidebar">
+        <div class="brand">Q&amp;A</div>
+        <button id="newConv" class="btn small">+ New chat</button>
+        <div class="conversations" id="conversationsList"></div>
+    </aside>
+
+    <main class="main">
+        <div class="chat-header">
+            <h1>Question and Answer</h1>
+            <!-- <div class="subtitle">Guest - Localhost</div> -->
+        </div>
+
+        <div id="chat" class="chat"></div>
+
+        <form id="inputForm" class="input-area" onsubmit="return false;">
+            <textarea id="messageInput" placeholder="Ask anything..." rows="1"></textarea>
+            <button id="sendBtn" class="btn primary">Send</button>
+        </form>
+    </main>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
