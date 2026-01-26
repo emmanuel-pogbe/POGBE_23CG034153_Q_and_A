@@ -56,7 +56,6 @@ def ai_response(prompt=None):
         #     text = str(output)
 
         text = output.choices[0].message.content
-        print(text)
         # final fallback
         if not text:
             text = "Error: currently facing downtime - you've used me too much"
